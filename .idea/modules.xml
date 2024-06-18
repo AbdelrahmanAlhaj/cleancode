@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/cleancode.iml" filepath="$PROJECT_DIR$/.idea/cleancode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solid_principle_dip/solid_principle_dip.iml" filepath="$PROJECT_DIR$/solid_principle_dip/solid_principle_dip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solid_principle_isp/solid_principle_isp.iml" filepath="$PROJECT_DIR$/solid_principle_isp/solid_principle_isp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solid_principle_lsp/solid_principle_lsp.iml" filepath="$PROJECT_DIR$/solid_principle_lsp/solid_principle_lsp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/solid_principles_ocp/solid_principles_ocp.iml" filepath="$PROJECT_DIR$/solid_principles_ocp/solid_principles_ocp.iml" />
+    </modules>
+  </component>
+</project>
