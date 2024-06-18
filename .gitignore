@@ -1,6 +1,5 @@
 out/
 out/*
-*.iml
 /DRY_principle/.gitignore
 /DRY_principle/mvnw
 /DRY_principle/mvnw.cmd
