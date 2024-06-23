@@ -33,8 +33,7 @@ public class UserController {
 
     @PostMapping("/users")
     public User createUser(@RequestBody User user) {
-        User savedUser = userRepository.save(user);
-        return savedUser;
+        return userRepository.save(user);
     }
 
     @GetMapping("/users/{id}")
@@ -55,8 +54,7 @@ public class UserController {
             existingUser.setName(user.getName());
             existingUser.setEmail(user.getEmail());
             existingUser.setAge(user.getAge());
-            User updatedUser = userRepository.save(existingUser);
-            return updatedUser;
+            return userRepository.save(existingUser);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
         }
