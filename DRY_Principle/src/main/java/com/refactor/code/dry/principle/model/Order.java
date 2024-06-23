@@ -2,9 +2,7 @@ package com.refactor.code.dry.principle.model;
 
 import java.math.BigDecimal;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,4 +16,7 @@ public class Order {
     private Long Id;
     private String customerName;
     private BigDecimal total;
+
+    @ManyToOne
+    private Customer customer;
 }
