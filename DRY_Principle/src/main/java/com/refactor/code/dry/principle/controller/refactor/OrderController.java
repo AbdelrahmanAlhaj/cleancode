@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @ConditionalOnProperty(name = "dry.principle.enabled", havingValue = "true")
@@ -22,8 +23,8 @@ public class OrderController extends CrudController<Order, Long> {
         this.orderRepository = orderRepository;
     }
 
-    @GetMapping("/{customerName}/{status}")
-    public Order fetchCustomerOrders(@PathVariable("customerName") String customerName, @PathVariable("status") String status) {
+    @GetMapping("/{status}/{customerName}")
+    public Order fetchCustomerOrders(@PathVariable("status") String status, @PathVariable("customerName") String customerName) {
         Optional<Order> optionalT = orderRepository.findByCustomerNameAndStatus(customerName, status);
         if (optionalT.isPresent()) {
             return optionalT.get();
@@ -32,4 +33,9 @@ public class OrderController extends CrudController<Order, Long> {
         }
     }
 
+    @GetMapping("/")
+    public List<Order> getAll() {
+//        return orderRepository.findAll(Sort.by(Sort.Order.asc("orderDate")));
+        return null;
+    }
 }
