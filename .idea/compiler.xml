@@ -8,7 +8,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="DRY_Principle" />
+        <module name="YAGNI_Principle" />
+        <module name="code_smells_long_classes" />
+        <module name="code_smells_switch_cases" />
+        <module name="code_smells_data_clumps" />
+        <module name="code_smells_shotgun_surgery" />
+        <module name="code_smells_long_methods" />
         <module name="KISS_Principle" />
+        <module name="code_smells_duplicateCode" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,6 +23,13 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="DRY_Principle" options="-parameters" />
       <module name="KISS_Principle" options="-parameters" />
+      <module name="YAGNI_Principle" options="-parameters" />
+      <module name="code_smells_data_clumps" options="-parameters" />
+      <module name="code_smells_duplicateCode" options="-parameters" />
+      <module name="code_smells_long_classes" options="-parameters" />
+      <module name="code_smells_long_methods" options="-parameters" />
+      <module name="code_smells_shotgun_surgery" options="-parameters" />
+      <module name="code_smells_switch_cases" options="-parameters" />
     </option>
   </component>
 </project>

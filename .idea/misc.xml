@@ -7,6 +7,13 @@
         <option value="$PROJECT_DIR$/DRY_principle/pom.xml" />
         <option value="$PROJECT_DIR$/DRY_Principle/pom.xml" />
         <option value="$PROJECT_DIR$/KISS_Principle/pom.xml" />
+        <option value="$PROJECT_DIR$/YAGNI_Principle/pom.xml" />
+        <option value="$PROJECT_DIR$/code_smells_data_clumps/pom.xml" />
+        <option value="$PROJECT_DIR$/code_smells_duplicateCode/pom.xml" />
+        <option value="$PROJECT_DIR$/code_smells_long_classes/pom.xml" />
+        <option value="$PROJECT_DIR$/code_smells_long_methods/pom.xml" />
+        <option value="$PROJECT_DIR$/code_smells_shotgun_surgery/pom.xml" />
+        <option value="$PROJECT_DIR$/code_smells_switch_cases/pom.xml" />
       </list>
     </option>
   </component>
