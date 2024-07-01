@@ -14,17 +14,16 @@ import com.refactor.code.smells.duplicate.model.Product;
 @Service
 public class ProductService {
 
-	public void createProduct(Product product) throws ApplicationException {
-		ErrorType errorType = ErrorType.INVALID_PRICE;
-		String message = null;
-		if (ErrorType.INVALID_PRICE.equals(errorType)) {
-			message = new InvalidProductPriceErrorMessage().getMessage();
-			throw new InvalidProductPriceException(message, HttpStatus.BAD_REQUEST.value(), errorType);
-		} else {
-			message = new DuplicateProductErrorMessage().getMessage();
-			throw new DuplicateProductException(message, HttpStatus.BAD_REQUEST.value(),
-					ErrorType.DUPLICATE_PRODUCT);
-		}
-	}
+    public void createProduct(Product product) throws ApplicationException {
+        ErrorType errorType = ErrorType.INVALID_PRICE;
+        String message;
+        if (ErrorType.INVALID_PRICE.equals(errorType)) {
+            message = new InvalidProductPriceErrorMessage().getMessage();
+            throw new InvalidProductPriceException(message, HttpStatus.BAD_REQUEST.value(), errorType);
+        } else {
+            message = new DuplicateProductErrorMessage().getMessage();
+            throw new DuplicateProductException(message, HttpStatus.BAD_REQUEST.value(), ErrorType.DUPLICATE_PRODUCT);
+        }
+    }
 
 }

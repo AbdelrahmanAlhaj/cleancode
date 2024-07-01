@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,18 +21,10 @@ import com.refactor.code.smells.duplicate.exception.InvalidProductPriceException
 import com.refactor.code.smells.duplicate.model.Product;
 import com.refactor.code.smells.duplicate.service.ProductService;
 
+@ConditionalOnProperty(name = "refactor.enabled", havingValue = "true")
 @RestController
 public class ProductController { // NOPMD by ahmed on 5/25/23, 10:17 AM
-	
-	private static final Map<Class<? extends Exception>, ErrorMessage> ERROR_MESSAGES = new ConcurrentHashMap<>(); // NOPMD by ahmed on 5/25/23, 10:17 AM
-	static {
-	    ERROR_MESSAGES.put(DuplicateProductException.class, new DuplicateProductErrorMessage());
-	    ERROR_MESSAGES.put(InvalidProductException.class, new InvalidProductErrorMessage());
-	    ERROR_MESSAGES.put(InvalidProductPriceException.class, new InvalidProductPriceErrorMessage());
-	}
 
-	
-	
 	@Autowired
 	private ProductService productService; // NOPMD by ahmed on 5/25/23, 10:15 AM
 
@@ -42,9 +35,8 @@ public class ProductController { // NOPMD by ahmed on 5/25/23, 10:17 AM
 		try {
 			productService.createProduct(product);
 		} catch (ApplicationException e) {
-//			e.printStackTrace();
-			final ErrorMessage errorMessage = ERROR_MESSAGES.getOrDefault(e.getClass(), new InvalidProductErrorMessage());
-			responseEntity =  ResponseEntity.badRequest().body(errorMessage.getMessage());
+			e.printStackTrace();
+			responseEntity =  ResponseEntity.badRequest().body(e.getMessage());
 	    }
 		return responseEntity;
 	}

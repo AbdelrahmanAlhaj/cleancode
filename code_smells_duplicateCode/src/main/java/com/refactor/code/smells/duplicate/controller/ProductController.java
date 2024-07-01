@@ -1,6 +1,7 @@
 package com.refactor.code.smells.duplicate.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import com.refactor.code.smells.duplicate.exception.ApplicationException;
 import com.refactor.code.smells.duplicate.model.Product;
 import com.refactor.code.smells.duplicate.service.ProductService;
 
+@ConditionalOnProperty(name = "refactor.enabled", havingValue = "false")
 @RestController
 public class ProductController {
 
