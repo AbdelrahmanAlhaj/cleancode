@@ -10,4 +10,5 @@ public class CodeSmellsDuplicateCodeApplication {
 		SpringApplication.run(CodeSmellsDuplicateCodeApplication.class, args);
 	}
 
+
 }
