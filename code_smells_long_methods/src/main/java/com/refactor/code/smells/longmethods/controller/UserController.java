@@ -3,6 +3,7 @@ package com.refactor.code.smells.longmethods.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -27,25 +28,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) throws Exception {
-        User user = userRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException());
-
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(user.getId());
-        userDTO.setUsername(user.getUsername());
-        userDTO.setRole(user.getRole());
-
-        List<Order> orders = user.getOrders();
-        List<OrderDTO> orderDTOs = new ArrayList<>();
-        for (Order order : orders) {
-            OrderDTO orderDTO = new OrderDTO();
-            orderDTO.setId(order.getId());
-            orderDTO.setTotalPrice(order.getTotalPrice());
-            orderDTO.setOrderDate(order.getOrderDate());
-            orderDTOs.add(orderDTO);
-        }
-        userDTO.setOrderDTOs(orderDTOs);
-
+        User user = userRepository.findById(id).orElseThrow(NotFoundException::new);
+        UserDTO userDTO = convertUserToUserDTO(user);
         if (user.getRole().equals("admin")) {
             userDTO.setPermissions(Arrays.asList("CREATE_USER", "DELETE_USER", "EDIT_USER", "VIEW_ORDERS", "CREATE_PRODUCT", "DELETE_PRODUCT", "EDIT_PRODUCT", "VIEW_PRODUCTS"));
         } else if (user.getRole().equals("manager")) {
@@ -56,5 +40,30 @@ public class UserController {
 
         return ResponseEntity.ok(userDTO);
     }
+
+    private UserDTO convertUserToUserDTO(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setRole(user.getRole());
+        List<Order> orders = user.getOrders();
+        userDTO.setOrderDTOs(convertOrdersToOrderDTOs(orders));
+        return userDTO;
+    }
+
+    private List<OrderDTO> convertOrdersToOrderDTOs(List<Order> orders) {
+        return orders.stream().map(UserController::convertOrderToOrderDTO)
+                .collect(Collectors.toList());
+    }
+
+    private static OrderDTO convertOrderToOrderDTO(Order order) {
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setId(order.getId());
+        orderDTO.setTotalPrice(order.getTotalPrice());
+        orderDTO.setOrderDate(order.getOrderDate());
+        return orderDTO;
+    }
+
+
 }
 
