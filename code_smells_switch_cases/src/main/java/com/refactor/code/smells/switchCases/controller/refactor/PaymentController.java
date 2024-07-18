@@ -12,11 +12,10 @@ import com.refactor.code.smells.switchCases.service.refactor.PaymentServiceFacto
 @RestController
 public class PaymentController {
 
-	@PostMapping("/refactor/pay")
-	public ResponseEntity<?> pay(@RequestBody PaymentRequest paymentRequest) {
-		PaymentService paymentService = PaymentServiceFactory
-				.createPaymentService(paymentRequest.getPaymentMethod());
-		return paymentService.processPayment(paymentRequest);
-	}
+    @PostMapping("/refactor/pay")
+    public ResponseEntity<?> pay(@RequestBody PaymentRequest paymentRequest) {
+        PaymentService paymentService = PaymentServiceFactory.createPaymentService(paymentRequest.getPaymentMethod());
+        return paymentService.processPayment(paymentRequest);
+    }
 
 }

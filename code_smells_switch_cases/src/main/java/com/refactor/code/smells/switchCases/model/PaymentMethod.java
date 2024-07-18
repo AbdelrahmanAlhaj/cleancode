@@ -1,8 +1,11 @@
 package com.refactor.code.smells.switchCases.model;
 
 public enum PaymentMethod {
-	CREDIT,
-	PAYPAL,
-	BITCOIN;
+    CREDIT,
+    PAYPAL,
+    BITCOIN,
+    DEBIT,
+    STRIP,
+    CACHE
 
 }
