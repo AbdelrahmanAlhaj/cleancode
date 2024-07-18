@@ -3,6 +3,7 @@ package com.refactor.code.smells.longclasses.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,35 +15,40 @@ import com.refactor.code.smells.longclasses.model.OrderItem;
 import com.refactor.code.smells.longclasses.model.OrderItemDTO;
 import com.refactor.code.smells.longclasses.repository.OrderRepository;
 
+@ConditionalOnProperty(name = "refactor.enabled", havingValue = "false")
 @RestController
 @RequestMapping("/api")
 public class OrderController {
-	
-	private OrderRepository orderRepository;
-	
-	@GetMapping("/users/{userId}/orders")
-	public List<OrderDTO> getOrderHistoryForUser(@PathVariable Long userId) {
-	    List<Order> orders = orderRepository.getOrderHistoryForUser(userId);
-	    List<OrderDTO> orderDTOs = new ArrayList<>();
-	    for (Order order : orders) {
-	        OrderDTO orderDTO = new OrderDTO();
-	        orderDTO.setId(order.getId());
-	        orderDTO.setOrderDate(order.getOrderDate());
-	        orderDTO.setTotalPrice(order.getTotalPrice());
-	        List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
-	        for (OrderItem orderItem : order.getOrderItems()) {
-	            OrderItemDTO orderItemDTO = new OrderItemDTO();
-	            orderItemDTO.setId(orderItem.getId());
-	            orderItemDTO.setProductName(orderItem.getProductName());
-	            orderItemDTO.setQuantity(orderItem.getQuantity());
-	            orderItemDTO.setTotalPrice(orderItem.getTotalPrice());
-	            orderItemDTOs.add(orderItemDTO);
-	        }
-	        orderDTO.setOrderItemDTOs(orderItemDTOs);
-	        orderDTOs.add(orderDTO);
-	    }
-	    return orderDTOs;
-	}
+
+    private final OrderRepository orderRepository;
+
+    public OrderController(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    @GetMapping("/users/{userId}/orders")
+    public List<OrderDTO> getOrderHistoryForUser(@PathVariable Long userId) {
+        List<Order> orders = orderRepository.getOrderHistoryForUser(userId);
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+        for (Order order : orders) {
+            OrderDTO orderDTO = new OrderDTO();
+            orderDTO.setId(order.getId());
+            orderDTO.setOrderDate(order.getOrderDate());
+            orderDTO.setTotalPrice(order.getTotalPrice());
+            List<OrderItemDTO> orderItemDTOs = new ArrayList<>();
+            for (OrderItem orderItem : order.getOrderItems()) {
+                OrderItemDTO orderItemDTO = new OrderItemDTO();
+                orderItemDTO.setId(orderItem.getId());
+                orderItemDTO.setProductName(orderItem.getProductName());
+                orderItemDTO.setQuantity(orderItem.getQuantity());
+                orderItemDTO.setTotalPrice(orderItem.getTotalPrice());
+                orderItemDTOs.add(orderItemDTO);
+            }
+            orderDTO.setOrderItemDTOs(orderItemDTOs);
+            orderDTOs.add(orderDTO);
+        }
+        return orderDTOs;
+    }
 
 
 }

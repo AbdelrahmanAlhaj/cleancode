@@ -12,8 +12,14 @@ import com.refactor.code.smells.longclasses.model.OrderItemDTO;
 
 @Component
 public class OrderDTOConverter {
-	
-	public OrderDTO convertOrderToDTO(Order order) {
+
+    public List<OrderDTO> convertOrderToDTO(List<Order> orders) {
+        return orders.stream()
+                .map(this::convertOrderToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public OrderDTO convertOrderToDTO(Order order) {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setId(order.getId());
         orderDTO.setOrderDate(order.getOrderDate());
