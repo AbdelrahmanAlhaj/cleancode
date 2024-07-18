@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RegularUserPermission extends UserPermission {
 
-	@Override
+    @Override
     public List<String> getPermissions() {
         return Arrays.asList("VIEW_ORDERS", "VIEW_PRODUCTS");
     }
