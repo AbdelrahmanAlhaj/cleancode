@@ -5,11 +5,15 @@ import java.util.List;
 import com.refactor.code.smells.shotgunSurgery.model.UserDTO;
 
 public interface UserCRUDService {
-	
-	public UserDTO createUser(UserDTO userDTO);
-    public UserDTO updateUser(Long id, UserDTO userDTO);
-    public void deleteUser(Long id);
-    public UserDTO getUser(Long id);
-    public List<UserDTO> getAllUsers();
+
+    UserDTO createUser(UserDTO userDTO);
+
+    UserDTO updateUser(Long id, UserDTO userDTO);
+
+    void deleteUser(Long id);
+
+    UserDTO getUser(Long id);
+
+    List<UserDTO> getAllUsers();
 
 }

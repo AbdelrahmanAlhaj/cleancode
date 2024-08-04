@@ -1,5 +1,8 @@
 package com.refactor.code.smells.shotgunSurgery.model;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+
+@ConditionalOnProperty(name = "refactor.enabled", havingValue = "false")
 public class UserDTOConverter {
 
 	public static UserDTO convertUserToUserDTO(User user) {
