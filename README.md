@@ -39,27 +39,27 @@ Every piece of code or logic must have a single representation within your syste
 **Techniques**
 
 ### KISS: Keep It Simple, Stupid
-### Techniques
+**Techniques**
 ### YAGNI Principle: You Ain’t Gonna Need It.
-### When will the YAGNI be applied?
-### How to implement?
+**When will the YAGNI be applied?**</br>
+**How to implement?**
 ### Identifying Code Smells
 ### Duplicate code
 ### Long methods
-### How to solve
+**How to solve**
 ### Large classes
-### Definition
-### Signs
-### How to solve
+**Definition**</br>
+**Signs**</br>
+**How to solve**
 ### Switch Cases
-### Definition
-### Signs
-### How to solve
+**Definition**</br>
+**Signs**</br>
+**How to solve**
 ### Identifying Code Smells - Shotgun Surgery
-### Definition
-### Signs
-### How to solve
+**Definition**</br>
+**Signs**</br>
+**How to solve**
 ### Data Clumps
-### Definition
-### Signs
-### How to solve
+**Definition**</br>
+**Signs**</br>
+**How to solve**
